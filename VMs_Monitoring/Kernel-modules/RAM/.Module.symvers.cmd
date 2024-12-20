@@ -1,0 +1,1 @@
+savedcmd_/home/ctoscano/Documentos/SO1_VAC_DIC_2024_201532643/VMs_Monitoring/Kernel-modules/RAM/Module.symvers :=  scripts/mod/modpost -M -m -a      -o /home/ctoscano/Documentos/SO1_VAC_DIC_2024_201532643/VMs_Monitoring/Kernel-modules/RAM/Module.symvers -T /home/ctoscano/Documentos/SO1_VAC_DIC_2024_201532643/VMs_Monitoring/Kernel-modules/RAM/modules.order -i Module.symvers -e 

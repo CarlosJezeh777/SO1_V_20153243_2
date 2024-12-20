@@ -1,0 +1,14 @@
+{
+  "name": "monitoring-api",
+  "version": "1.0.0",
+  "description": "API for monitoring system resources",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "mysql2": "^2.3.3",
+    "prom-client": "^13.2.0"
+  }
+}

@@ -1,0 +1,10 @@
+
+services:
+  monitoring-agent:
+    build: ./Agent
+    container_name: monitoring_agent
+    environment:
+      API_URL: http://api_container:3000
+    ports:
+      - "5200:5200"
+

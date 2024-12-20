@@ -1,0 +1,55 @@
+version: '3.8'
+services:
+  mysql:
+    build: 
+      context: ./Database
+      dockerfile: Dockerfile
+    container_name: mysql-container
+    environment:
+      MYSQL_ROOT_PASSWORD: pi3141592
+      MYSQL_DATABASE: monitoring
+      MYSQL_USER: ctoscano
+      MYSQL_PASSWORD: pi3141592
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  api:
+    build: ./Monitoring-api
+    container_name: api_container
+    environment:
+      DB_HOST: mysql
+      DB_USER: ctoscano
+      DB_PASSWORD: pi3141592
+      DB_NAME: monitoring
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mysql
+
+  prometheus:
+    build: ./Prometheus
+    container_name: prometheus
+    ports:
+      - "9090:9090"
+    depends_on:
+      - api
+
+  grafana:
+    image: grafana/grafana
+    container_name: grafana
+    ports:
+      - "3001:3000"
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+    volumes:
+      - grafana_data:/var/lib/grafana
+    depends_on:
+      - prometheus
+
+volumes:
+  mysql_data:
+    driver: local
+  grafana_data:
+    driver: local
